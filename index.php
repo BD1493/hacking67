@@ -49,7 +49,7 @@ function json_write($path, $data) {
 }
 
 function is_image_ext($ext) {
-    return in_array(strtolower($ext), ['jpg','jpeg','png','gif','webp','bmp','svg' , 'html' , 'css' , 'js' , 'mp4' , 'gdocs', 'pdf', 'gslides']);
+    return in_array(strtolower($ext), ['jpg','jpeg','png','gif','webp','bmp','svg' , 'html' , 'css' , 'js' , 'mp4' , 'gdocs', 'pdf', 'gslides', "docs", "docx"]);
 }
 
 function safe_basename($name) {
