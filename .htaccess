@@ -1,0 +1,7 @@
+# BEGIN InfinityFree Directory Protection
+# DO NOT EDIT - YOUR CHANGES WILL BE OVERWRITTEN
+AuthType Basic
+AuthName "register"
+AuthUserFile "/home/vol5_3/infinityfree.com/if0_39745725/school-uploads.42web.io/htdocs//.htpasswd"
+Require valid-user
+# END InfinityFree Directory Protection

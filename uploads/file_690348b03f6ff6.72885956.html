@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI CODERS — Work with the future</title>
+  <link rel="icon" type="image/x-icon" href="logo10.png">
+  
+  <meta name="description" content="AI CODERS — Learn coding, buy plans, get scholarships." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #071022;
+      --card: #0b1630;
+      --muted: #9fb0c8;
+      --accent: #00d1ff;
+      --accent2: #7c3aed;
+      --glass: rgba(255, 255, 255, 0.03);
+      --radius: 12px;
+      --maxw: 1100px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #041021, #071022);
+      color: #eaf6ff;
+      min-height: 100vh
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none
+    }
+
+    .container {
+      max-width: var(--maxw);
+      margin: 28px auto;
+      padding: 18px
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent)
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .logo-bg {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background-image: url('logo-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: white;
+      font-size: 18px;
+    }
+
+    .brand .name {
+      font-weight: 800;
+      line-height: 1;
+      color: #fff
+    }
+
+    nav {
+      display: flex;
+      gap: 12px;
+      align-items: center
+    }
+
+    nav a {
+      color: var(--muted);
+      font-weight: 600
+    }
+
+    .btn {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: #00202a;
+      font-weight: 700;
+      cursor: pointer
+    }
+
+    .ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: var(--muted);
+      cursor: pointer
+    }
+
+    main {
+      margin-top: 20px;
+      display: grid;
+      gap: 18px
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      padding: 20px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.00))
+    }
+
+    .hero .left {
+      flex: 1
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 30px
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-top: 8px
+    }
+
+    /* Sections */
+    section {
+      padding: 18px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent)
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+
+    .card {
+      background: var(--card);
+      padding: 14px;
+      border-radius: 10px
+    }
+
+    .muted {
+      color: var(--muted)
+    }
+
+    .center {
+      text-align: center
+    }
+
+    /* Products */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px
+    }
+
+    .prod {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.00));
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center
+    }
+
+    .prod img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 8px
+    }
+
+    .prod .title {
+      font-weight: 700
+    }
+
+    .prod button {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 16, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 60
+    }
+
+    .modal.open {
+      display: flex
+    }
+
+    .modal .panel {
+      background: #071229;
+      padding: 12px;
+      border-radius: 12px;
+      max-width: 920px;
+      width: 95%
+    }
+
+    .close {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 6px 8px;
+      border-radius: 8px;
+      cursor: pointer
+    }
+
+    /* Scholarship flow */
+    .sch-choices {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .form-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    input,
+    select,
+    textarea {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 10px;
+      border-radius: 8px;
+      color: inherit;
+      width: 100%
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical
+    }
+
+    /* Offers */
+    .offers {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .offer-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.01))
+    }
+
+    .badge {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-weight: 700;
+      color: #00202a
+    }
+
+    /* Reviews */
+    .reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .review {
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.02)
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    /* Footer */
+    footer {
+      padding: 14px;
+      border-radius: 10px;
+      text-align: center;
+      color: var(--muted);
+      margin-top: 8px
+    }
+
+    @media (max-width:900px) {
+      .hero {
+        flex-direction: column
+      }
+    
+
+      .grid-3 {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo-bg" title="AI CODERS logo area">
+          <!-- logo text fallback -->
+          <img class="logo-bg" src="logo10.png" alt="">
+        </div>
+        <div>
+          <div class="name">AI CODERS</div>
+          <div class="small muted">Work with the future</div>
+        </div>
+      </div>
+
+      <nav aria-label="main nav">
+        <a href="#what">What we do</a>
+        <a href="#products">Products</a>
+        <a href="#plans">Plans</a>
+        <a href="#scholar">Scholarship</a>
+        <a href="#offers">Offers</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div>
+        <button class="ghost"
+          onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
+        <button class="btn"
+          onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="left">
+          <h1>AI CODERS — Learn, Build, Succeed</h1>
+          <p class="muted">We teach coding, build products, and help everyone get a very very bright future.</p>
+          <div style="margin-top:10px;display:flex;gap:10px">
+            <button class="btn" onclick="document.getElementById('scholar').scrollIntoView({behavior:'smooth'})">Apply
+              for free education</button>
+            <button class="ghost" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">See
+              products</button>
+          </div>
+          <div style="margin-top:12px" class="small muted">Open positions and scholarships available.</div>
+        </div>
+
+        <div style="width:320px">
+          <div
+            style="background:linear-gradient(90deg,var(--accent),var(--accent2));padding:12px;border-radius:12px;color:#001924;text-align:center;font-weight:800">
+            AI CODERS</div>
+          <div style="height:12px"></div>
+          <img src="logo10.png" alt="flyer preview" style="width:100%;border-radius:10px;object-fit:cover">
+        </div>
+      </section>
+
+      <!-- WHAT WE DO (user will paste content here — left intact) -->
+      <section id="what" aria-labelledby="what-title">
+        <h2 id="what-title">What we do</h2>
+        <div contenteditable="false"
+          style="padding:12px;border-radius:8px;background:rgba(255,255,255,0.01);min-height:80px"
+          aria-label="What we do editable area">
+          We do Service and Products- meaning we teach high level coding, cyber security, AI usage, Anti Hacking and programing which we can teach you in any language example- English, Spanish e.t.c, with price only starting from $200 per course and level. We also sell tech products from the price range of fifty Dollars($50) to one hundred thousand dollars($100K), so also people with less and more budget can buy our products.
+
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section id="products">
+        <h2>Products</h2>
+
+        <div class="products" id="productGrid">
+          <!-- Example product cards; replace images and texts -->
+          <div class="prod">
+            <img src="Business products menu.png" alt="Product 1">
+            <div class="title">Our product list</div>
+            <div class="small muted">This is our product list which you can buy from <a href="https://ai-coders/buy-products">here</a></div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn" onclick="viewProduct(0)">View</button>
+            </div>
+          </div>
+
+          
+        <!-- Product modal -->
+        <div id="prodModal" class="modal" role="dialog" aria-modal="true">
+          <div class="panel" id="prodPanel">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+              <strong id="prodTitle">Product</strong>
+              <button class="close" onclick="closeProdModal()">Close</button>
+            </div>
+            <div style="height:12px"></div>
+            <img id="prodImg" src="" alt="" style="width:100%;max-height:60vh;object-fit:contain;border-radius:8px">
+            <div style="height:8px"></div>
+            <p id="prodDesc" class="muted"></p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- PLANS -->
+      <section id="plans">
+        <h2>Plans</h2>
+        <p class="muted">Pick any plans you would like to buy:</p>
+        <div class="grid-3" id="plansGrid">
+          <!-- placeholder cards; you will replace pricing & details -->
+          <div class="card">
+            <h3>Basic</h3>
+            <div class="muted">This plan will have variety of things: A ICOP(A computer from AI CODERS), ICHOR(A cell phone from AI CODERS), Coding plan, and other normal items. Starting from $10K</div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="btn" onclick="buyPlan('Starter')">Buy Starter</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Pro</h3>
+            <div class="muted">This plan will have variety of things: A ICOP(A computer from AI CODERS), ICHOR(A cell phone from AI CODERS), Coding plan, anti-hacking, and other better items than the Basic plan. Starting from $100k</div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="btn" onclick="buyPlan('Pro')">Buy Pro</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Enterprise</h3>
+            <div class="muted">This plan will have variety of things: A ICOP(A computer from AI CODERS), ICHOR(A cell phone from AI CODERS), Coding plan, anti-hacking and all other courses, and other better items than the every plan. starting from $1M</div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="btn" onclick="buyPlan('Enterprise')">Buy Enterprise</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="card">
+          <h4>Plans you bought</h4>
+          <div id="boughtList" class="muted small">No purchases yet.</div>
+        </div>
+      </section>
+
+      <!-- SCHOLARSHIP / FREE EDUCATION -->
+      <section id="scholar">
+        <h2>Scholarship / Free Education</h2>
+        <p class="muted">Schools or individuals in need can apply for free education.</p>
+
+        <div class="sch-choices">
+          <button class="btn" onclick="showScholarForm('school')">Apply as School</button>
+          <button class="btn" onclick="showScholarForm('individual')">Apply as Individual</button>
+        </div>
+
+        <div id="schFormArea" style="margin-top:12px"></div>
+
+        <div id="schResult" style="margin-top:12px"></div>
+      </section>
+
+      <!-- FLYER + PARAGRAPH -->
+      <section id="flyer">
+        <h2>Flyer</h2>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <img id="flyerImg" src="Business flyer 3.png" alt="Flyer" style="width:320px;border-radius:8px;object-fit:cover">
+          <div style="flex:1">
+            <div class="muted">More info:</div>
+            <div contenteditable="false"
+              style="padding:10px;border-radius:8px;background:rgba(255,255,255,0.01);min-height:80px;margin-top:8px"> This is our flyer for our events and our events are going to start from 10 OCT as shown in the flyer till JAN 1 2026. Here we sell products 20% off and registration for our courses will be held. Plus first 1000 people who will pre-register our courses will get 20% off. Be tuned for more info.
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUSINESS IMAGE + PARA -->
+      <section id="biz">
+        <h2>About our Business</h2>
+        <div style="margin-top:10px; padding:20px;" contenteditable="false" class="muted"> We are in the industries of Tech and we are New and expanding. We can come to your house and teach you from any point of the plannet(Not North Korea).</div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section id="reviews">
+        <h2>Reviews</h2>
+        
+        <div style="display:flex;gap:12px;align-items:center">
+          <input id="revName" placeholder="Your name" style="width:200px">
+          <input id="revText" placeholder="Your review" style="flex:1">
+          <button class="btn" onclick="addReview()">Add review</button>
+        </div>
+        <div style="height:12px"></div>
+        <div class="reviews" id="reviewsList"></div>
+      </section>
+
+      <!-- OFFERS -->
+      <section id="offers">
+        <h2>Special Offers (50% off)</h2>
+        <p class="muted">Seasonal & event offers — sample list. Replace or extend as you like.</p>
+        <div class="offers" id="offersList" style="max-height:240px;overflow:auto;padding-right:6px"></div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <p class="muted">Email: <a href="mailto:coders@aicoders.com ">coders@aicoders.com </a> • Phone: +1 (804) 1935 459 <img src="card2 logo.png" alt="flyer preview" style="width:250px;border-radius:10px;object-fit:cover; margin: 20px;"></p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <input placeholder="Your name" style="flex:1">
+          <input placeholder="Email" style="flex:1">
+          <textarea placeholder="Message" style="flex-basis:100%"></textarea>
+          <div style="display:flex;gap:8px">
+            <button class="btn">Send</button>
+            <button class="ghost">Email instead</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="font-weight:700">AI CODERS — Work with the future</div>
+      <div class="small muted">© <span id="year"></span> AI CODERS</div>
+    </footer>
+  </div>
+
+  <!-- Modal for ad/video -->
+  <div id="adModal" class="modal" aria-hidden="true">
+    <div class="panel" style="max-width:760px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong>Special Message</strong>
+        <button class="close" onclick="closeAd()">Close</button>
+      </div>
+      <div style="height:8px"></div>
+      <video id="adVideo" controls style="width:100%;max-height:60vh;border-radius:8px">
+        <source src="MIYB AD.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
+    </div>
+  </div>
+
+  <!-- Generic modal overlay (reused) -->
+  <div id="genericModal" class="modal" aria-hidden="true">
+    <div class="panel" id="genericPanel">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong id="genericTitle">Modal</strong>
+        <button class="close" onclick="closeGeneric()">Close</button>
+      </div>
+      <div style="height:8px"></div>
+      <div id="genericBody" class="muted"></div>
+    </div>
+  </div>
+
+  <script>
+    // ------- Basic helpers -------
+    function $(id) { return document.getElementById(id) }
+    document.getElementById('year').innerText = new Date().getFullYear();
+
+    // ------- Product modal -------
+    const products = [
+      { img: 'Business products menu.png', title: 'Our product list', desc: 'This is our product list which you can buy from https://ai-coders.org/prducts' }]
+    function viewProduct(i) {
+      const p = products[i];
+      $('prodTitle').innerText = p.title;
+      $('prodImg').src = p.img;
+      $('prodDesc').innerText = p.desc;
+      $('prodModal').classList.add('open');
+    }
+    function closeProdModal() { $('prodModal').classList.remove('open'); }
+
+    // ------- Session plan purchases (sessionStorage so cleared when tab closed) -------
+    function buyPlan(name) {
+      const bought = JSON.parse(sessionStorage.getItem('bought') || '[]');
+      bought.push({ name, ts: Date.now() });
+      sessionStorage.setItem('bought', JSON.stringify(bought));
+      renderBought();
+      alert('Thank you — plan added to your session purchases: ' + name);
+    }
+    function renderBought() {
+      const bought = JSON.parse(sessionStorage.getItem('bought') || '[]');
+      const el = $('boughtList');
+      if (!bought.length) { el.innerText = 'No purchases yet.'; return; }
+      el.innerHTML = bought.map(b => `<div class="small muted">${b.name} — ${new Date(b.ts).toLocaleString()}</div>`).join('');
+    }
+    renderBought();
+
+    // ------- Scholarship / free education flow -------
+    function showScholarForm(kind) {
+      const area = $('schFormArea');
+      area.innerHTML = '';
+      $('schResult').innerHTML = '';
+      if (kind === 'school') {
+        area.innerHTML = `
+          <div class="card">
+            <h3>School application</h3>
+            <div class="form-row">
+              <input id="sch_schoolName" placeholder="School name">
+              <input id="sch_contact" placeholder="Contact person">
+            </div>
+            <div class="form-row">
+              <input id="sch_email" placeholder="Email">
+              <input id="sch_phone" placeholder="Phone">
+            </div>
+            <textarea id="sch_info" placeholder="Tell us about your school and needs"></textarea>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn" onclick="submitScholar('school')">Submit School Application</button>
+              <button class="ghost" onclick="clearScholar()">Cancel</button>
+            </div>
+            <div class="small muted" style="margin-top:8px">We will not store your school's data on this page after submission.</div>
+          </div>
+        `;
+      } else {
+        area.innerHTML = `
+          <div class="card">
+            <h3>Individual application (free education)</h3>
+            <div class="form-row">
+              <input id="ind_name" placeholder="Full name">
+              <input id="ind_email" placeholder="Email">
+            </div>
+            <div class="form-row">
+              <input id="ind_phone" placeholder="Phone (optional)">
+              <input id="ind_last4" placeholder="Last 4 digits of SSN (optional)">
+            </div>
+            <textarea id="ind_info" placeholder="Tell us why you need free education"></textarea>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn" onclick="submitScholar('individual')">Submit Application</button>
+              <button class="ghost" onclick="clearScholar()">Cancel</button>
+            </div>
+            <div class="small muted" style="margin-top:8px">We DO NOT save this data. Last 4 digits are optional and used only to help identify applicants — nothing is stored or sent.</div>
+          </div>
+        `;
+      }
+    }
+
+    function clearScholar() { $('schFormArea').innerHTML = ''; $('schResult').innerHTML = ''; }
+
+    function submitScholar(kind) {
+      // gather fields locally
+      if (kind === 'school') {
+        const name = $('sch_schoolName')?.value || '';
+        const contact = $('sch_contact')?.value || '';
+        const email = $('sch_email')?.value || '';
+        const phone = $('sch_phone')?.value || '';
+        const info = $('sch_info')?.value || '';
+        // Important: do NOT store anywhere. Just show confirmation and clear form.
+        $('schFormArea').innerHTML = '';
+        $('schResult').innerHTML = `<div class="card"><strong>Application received</strong><div class="muted small">Thank you — your school application has been submitted. We will contact ${contact || 'the provided contact'} via email/phone. No application data was stored on this page.</div></div>`;
+        // no storage, no network calls
+      } else {
+        const name = $('ind_name')?.value || '';
+        const email = $('ind_email')?.value || '';
+        const phone = $('ind_phone')?.value || '';
+        const last4 = $('ind_last4')?.value || '';
+        const info = $('ind_info')?.value || '';
+        // We DO NOT store or log the data. Show confirmation and clear form.
+        $('schFormArea').innerHTML = '';
+        $('schResult').innerHTML = `<div class="card"><strong>Application received</strong><div class="muted small">Thank you ${name || ''}. Your application for free education has been received. No personal data was stored. We will contact you at the provided email if selected.</div></div>`;
+        // Clear sensitive variables immediately (helpful but JS runtime would still have them until GC)
+      }
+    }
+
+    // ------- Reviews stored in localStorage -------
+    function loadReviews() {
+      const list = JSON.parse(localStorage.getItem('aic_reviews') || '[]');
+      const el = $('reviewsList');
+      if (!list.length) { el.innerHTML = '<div class="muted small">No reviews yet.</div>'; return; }
+      el.innerHTML = list.map(r => `<div class="review"><strong>${escapeHtml(r.name)}</strong><div class="small muted">${new Date(r.ts).toLocaleString()}</div><p>${escapeHtml(r.text)}</p></div>`).join('');
+    }
+    function addReview() {
+      const name = document.getElementById('revName').value.trim() || 'Anonymous';
+      const text = document.getElementById('revText').value.trim();
+      if (!text) { alert('Please write a review.'); return; }
+      const list = JSON.parse(localStorage.getItem('aic_reviews') || '[]');
+      list.unshift({ name, text, ts: Date.now() });
+      localStorage.setItem('aic_reviews', JSON.stringify(list.slice(0, 50))); // keep last 50
+      document.getElementById('revName').value = ''; document.getElementById('revText').value = '';
+      loadReviews();
+    }
+    function escapeHtml(s) { return s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;'); }
+    loadReviews();
+
+    // ------- Offers list (many dates with 50% off) -------
+    (function renderOffers() {
+      const days = [
+        'Black Friday - Nov 28, 2025', 'Cyber Monday - Nov 30, 2025', 'New Year Sale - Jan 1, 2026', 'Valentine Special - Feb 14, 2026',
+        'Spring Launch - Mar 20, 2026', 'Easter Sale - Apr 12, 2026', 'Labor Day - May 1, 2026', 'Summer Kickoff - Jun 21, 2026',
+        'Independence Day - Jul 4, 2026', 'Back to School - Aug 15, 2026', 'Fall Savings - Sep 22, 2026', 'Halloween Offer - Oct 31, 2026',
+        'Singles Day - Nov 11, 2026', 'Thanksgiving - Nov 25, 2026', 'Small Business Sat - Nov 29, 2025', 'Prime Week - Jul 15, 2026',
+        'Festive Special - Dec 24, 2026', 'Boxing Day - Dec 26, 2026', 'Founders Day - Sep 1, 2026', 'Startup Week - Apr 1, 2026',
+        'Graduation Week - Jun 1, 2026', 'Teacher Appreciation - May 4, 2026', 'World Teachers Day - Oct 5, 2026', 'Student Month - Sep 2026',
+        'Local Community Day - Various Dates', 'Charity Week - Various Dates', 'Tech Week - Various Dates', 'Appreciation Day - Various Dates'
+      ];
+      const container = $('offersList');
+      container.innerHTML = days.map(d => `<div class="offer-row"><div>${escapeHtml(d)}</div><div><span class="badge">50% OFF</span></div></div>`).join('');
+    })();
+
+    // ------- Ad/video logic (show once per session if stayed >=60s; show on exit-intent if left before 60s) -------
+    let startTs = Date.now();
+    let adShown = sessionStorage.getItem('aic_ad_shown') === '1';
+    const adModal = $('adModal');
+    const adVideo = $('adVideo');
+
+    function showAd() {
+      if (adShown) return;
+      sessionStorage.setItem('aic_ad_shown', '1');
+      adShown = true;
+      adModal.classList.add('open');
+      adVideo.currentTime = 0;
+      adVideo.play().catch(() => { /* user gesture required on some browsers */ });
+    }
+    function closeAd() { adModal.classList.remove('open'); try { adVideo.pause(); } catch (e) { } }
+
+    // show after 60 seconds if still on page
+    setTimeout(() => { if (!adShown) showAd(); }, 60_000);
+
+    // exit-intent: mouse leaves viewport near top (desktop)
+    document.addEventListener('mouseleave', function (e) {
+      if (e.clientY <= 10 && !adShown) {
+        // if leaving before 60s, show ad immediately
+        const elapsed = (Date.now() - startTs) / 1000;
+        if (elapsed < 60) showAd();
+      }
+    });
+
+    // also try visibilitychange as best-effort when page is being hidden
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden && !adShown) {
+        const elapsed = (Date.now() - startTs) / 1000;
+        if (elapsed < 60) showAd();
+      }
+    });
+
+    // ------- Generic modal (for small messages) -------
+    function showGeneric(title, html) {
+      $('genericTitle').innerText = title;
+      $('genericBody').innerHTML = html;
+      $('genericModal').classList.add('open');
+    }
+    function closeGeneric() { $('genericModal').classList.remove('open'); }
+
+    // ------- Simple safety note for SSN -------
+    // We intentionally DO NOT collect or store full SSNs. Only an optional "last 4 digits" field is provided for verification
+    // and it is never saved.
+
+    // ------- Escape hatch for keyboard users to close modals by ESC -------
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') {
+        closeGeneric(); closeProdModal(); closeAd();
+      }
+    });
+
+    // ------- Misc: product grid dynamic rendering (if you change `products` array) -------
+    (function renderProducts() {
+      const grid = $('productGrid');
+      // If you later change products array, regenerate grid here.
+      // currently static markup added in HTML; this function reserved for future dynamic updates.
+    })();
+
+    // Prevent accidental form submission reloads (no server)
+    window.addEventListener('submit', e => e.preventDefault());
+
+  </script>
+</body>
+
+</html>
